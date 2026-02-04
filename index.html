@@ -13,7 +13,6 @@
       min-height: 100vh;
       padding: 20px;
     }
-    /* Auth Screen */
     .auth-screen {
       display: flex;
       flex-direction: column;
@@ -22,14 +21,8 @@
       min-height: 80vh;
       text-align: center;
     }
-    .auth-screen h1 {
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
-    .auth-screen .subtitle {
-      color: #666;
-      margin-bottom: 30px;
-    }
+    .auth-screen h1 { font-size: 2em; margin-bottom: 10px; }
+    .auth-screen .subtitle { color: #666; margin-bottom: 30px; }
     .auth-screen input {
       background: #12121a;
       border: 1px solid #333;
@@ -40,10 +33,7 @@
       width: 300px;
       margin-bottom: 15px;
     }
-    .auth-screen input:focus {
-      outline: none;
-      border-color: #3b82f6;
-    }
+    .auth-screen input:focus { outline: none; border-color: #3b82f6; }
     .auth-screen button {
       background: #3b82f6;
       color: #fff;
@@ -52,95 +42,90 @@
       border-radius: 8px;
       font-size: 1em;
       cursor: pointer;
-      transition: background 0.2s;
     }
     .auth-screen button:hover { background: #2563eb; }
-    .auth-screen .error {
-      color: #ef4444;
-      margin-top: 15px;
-      display: none;
-    }
-    /* Dashboard Styles */
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #222;
-    }
+    .auth-screen .error { color: #ef4444; margin-top: 15px; display: none; }
+    
+    .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #222; }
     .header h1 { font-size: 1.8em; color: #fff; margin-bottom: 8px; }
     .header .mission { color: #888; font-size: 0.9em; font-style: italic; }
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-    .stat { text-align: center; }
-    .stat-value { font-size: 2em; font-weight: bold; }
-    .stat-label { font-size: 0.8em; color: #666; text-transform: uppercase; }
-    .stat-value.green { color: #22c55e; }
-    .stat-value.yellow { color: #eab308; }
-    .stat-value.red { color: #ef4444; }
-    .stat-value.blue { color: #3b82f6; }
-    .projects {
-      display: grid;
-      gap: 15px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .project {
+    
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    
+    .card {
       background: #12121a;
       border-radius: 12px;
       padding: 20px;
-      border-left: 4px solid #333;
+      border-left: 4px solid #3b82f6;
     }
-    .project.high { border-left-color: #ef4444; }
-    .project.medium { border-left-color: #eab308; }
-    .project.low { border-left-color: #22c55e; }
-    .project-header {
+    .card.highlight { border-left-color: #22c55e; }
+    .card.warning { border-left-color: #eab308; }
+    .card.danger { border-left-color: #ef4444; }
+    .card h2 { font-size: 1.1em; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+    .card h2 .icon { font-size: 1.2em; }
+    
+    .stats { display: flex; gap: 20px; flex-wrap: wrap; }
+    .stat { text-align: center; flex: 1; min-width: 60px; }
+    .stat-value { font-size: 1.8em; font-weight: bold; }
+    .stat-label { font-size: 0.75em; color: #666; text-transform: uppercase; }
+    .stat-value.green { color: #22c55e; }
+    .stat-value.blue { color: #3b82f6; }
+    .stat-value.yellow { color: #eab308; }
+    .stat-value.red { color: #ef4444; }
+    
+    .activity-feed { max-height: 300px; overflow-y: auto; }
+    .activity-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #222;
+      font-size: 0.9em;
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-time { color: #666; font-size: 0.8em; }
+    .activity-type { 
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75em;
+      margin-right: 8px;
+    }
+    .activity-type.comment { background: #3b82f622; color: #3b82f6; }
+    .activity-type.upvote { background: #22c55e22; color: #22c55e; }
+    .activity-type.post { background: #8b5cf622; color: #8b5cf6; }
+    .activity-type.reply { background: #eab30822; color: #eab308; }
+    
+    .wallet-address {
+      background: #1a1a24;
+      padding: 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.85em;
+      word-break: break-all;
+      margin-top: 10px;
+    }
+    .wallet-address a { color: #3b82f6; text-decoration: none; }
+    .wallet-address a:hover { text-decoration: underline; }
+    
+    .project-list { display: flex; flex-direction: column; gap: 10px; }
+    .project-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .project-name { font-size: 1.2em; font-weight: 600; }
-    .project-status {
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75em;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    .status-done { background: #22c55e22; color: #22c55e; }
-    .status-in-progress { background: #3b82f622; color: #3b82f6; }
-    .status-blocked { background: #ef444422; color: #ef4444; }
-    .status-planned { background: #66666622; color: #666; }
-    .project-desc { color: #888; font-size: 0.9em; margin-bottom: 15px; }
-    .progress-bar {
-      height: 6px;
-      background: #222;
-      border-radius: 3px;
-      overflow: hidden;
-      margin-bottom: 15px;
-    }
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-      border-radius: 3px;
-    }
-    .tasks { display: flex; flex-wrap: wrap; gap: 8px; }
-    .task {
-      font-size: 0.8em;
-      padding: 4px 10px;
+      padding: 10px;
       background: #1a1a24;
       border-radius: 6px;
-      color: #888;
     }
-    .task.done { text-decoration: line-through; color: #444; }
-    .task.done::before { content: "✓ "; color: #22c55e; }
+    .project-name { font-weight: 600; }
+    .project-status {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      text-transform: uppercase;
+    }
+    .status-live { background: #22c55e22; color: #22c55e; }
+    .status-pending { background: #eab30822; color: #eab308; }
+    .status-building { background: #3b82f622; color: #3b82f6; }
+    
     .footer {
       text-align: center;
       margin-top: 30px;
@@ -148,8 +133,8 @@
       font-size: 0.8em;
     }
     .footer .refresh { color: #3b82f6; cursor: pointer; margin-left: 10px; }
-    .footer .refresh:hover { text-decoration: underline; }
     .footer .logout { color: #ef4444; cursor: pointer; margin-left: 20px; }
+    
     #dashboard { display: none; }
     .auto-refresh {
       position: fixed;
@@ -165,10 +150,15 @@
       display: none;
     }
     .auto-refresh.active { color: #22c55e; border-color: #22c55e44; }
+    
+    .pulse { animation: pulse 2s infinite; }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
   </style>
 </head>
 <body>
-  <!-- Auth Screen -->
   <div id="auth" class="auth-screen">
     <h1>🔐 Mission Control</h1>
     <div class="subtitle">Authentifizierung erforderlich</div>
@@ -177,59 +167,29 @@
     <div class="error" id="error">❌ Ungültiger Token</div>
   </div>
 
-  <!-- Dashboard (hidden until auth) -->
   <div id="dashboard">
     <div id="app"></div>
   </div>
   <div class="auto-refresh" id="autoRefresh">Auto-Refresh: <span id="refreshStatus">AUS</span></div>
 
   <script>
-    // Token hash (SHA256 of the actual token - not the token itself!)
-    const TOKEN_HASH = 'a3f2b8c9d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1';
+    const TOKEN = '917d6be735a46dd4cd74bd0aa1700f99';
     
-    // Simple hash function for client-side check
-    async function hashToken(token) {
-      const encoder = new TextEncoder();
-      const data = encoder.encode(token + '_missioncontrol_salt');
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    // Check auth on load
     async function checkAuth() {
-      // Check URL param first
       const urlParams = new URLSearchParams(window.location.search);
-      let token = urlParams.get('token');
-      
-      // Check localStorage
-      if (!token) {
-        token = localStorage.getItem('mc_token');
+      let token = urlParams.get('token') || localStorage.getItem('mc_token');
+      if (token === TOKEN) {
+        localStorage.setItem('mc_token', token);
+        if (urlParams.has('token')) window.history.replaceState({}, '', window.location.pathname);
+        showDashboard();
+        return;
       }
-      
-      if (token) {
-        const hash = await hashToken(token);
-        // Accept if hash matches OR if raw token matches (for convenience)
-        if (hash === TOKEN_HASH || token === '917d6be735a46dd4cd74bd0aa1700f99') {
-          localStorage.setItem('mc_token', token);
-          // Remove token from URL for security
-          if (urlParams.has('token')) {
-            window.history.replaceState({}, '', window.location.pathname);
-          }
-          showDashboard();
-          return;
-        }
-      }
-      
-      // Show auth screen
       document.getElementById('auth').style.display = 'flex';
     }
 
-    async function authenticate() {
+    function authenticate() {
       const token = document.getElementById('tokenInput').value;
-      const hash = await hashToken(token);
-      
-      if (hash === TOKEN_HASH || token === '917d6be735a46dd4cd74bd0aa1700f99') {
+      if (token === TOKEN) {
         localStorage.setItem('mc_token', token);
         showDashboard();
       } else {
@@ -248,123 +208,161 @@
       document.getElementById('dashboard').style.display = 'block';
       document.getElementById('autoRefresh').style.display = 'block';
       refresh();
-      toggleAutoRefresh(); // Auto-start refresh
+      toggleAutoRefresh();
     }
 
-    // Dashboard data
-    const dashboardData = {
-      "mission": "Technischen Fortschritt zum unfairen monetären Vorteil nutzen",
-      "lastUpdated": new Date().toISOString(),
-      "projects": [
+    // Dashboard data - will be updated by Jarvis
+    const data = {
+      mission: "Technischen Fortschritt zum unfairen monetären Vorteil nutzen",
+      lastUpdated: "2026-02-04T12:56:00Z",
+      treasury: {
+        wallet: "ChWbRpZfZy77rs5VNfXZ3hpCw5rkpyFcho34Pq7o6RBk",
+        balance: "0 SOL",
+        target: "10-50 SOL",
+        status: "funding"
+      },
+      moltbook: {
+        account: "moltflip",
+        profile: "https://moltbook.com/u/moltflip",
+        stats: {
+          posts: 1,
+          comments: 15,
+          upvotes: 2,
+          karma: 2,
+          followers: 1
+        },
+        recentActivity: [
+          { type: "post", text: "MOLTFLIP Launch Announcement", time: "12:35 UTC", link: "https://moltbook.com/post/418059ed-9229-4e37-95ab-061af9d57565" },
+          { type: "comment", text: "Engaged on 'Nightly Build' thread", time: "12:45 UTC" },
+          { type: "comment", text: "Engaged on 'Self-Paid Agents' thread", time: "12:47 UTC" },
+          { type: "comment", text: "Replied to trust question on our post", time: "12:49 UTC" },
+          { type: "comment", text: "Engaged on 'Agent Economy' thread", time: "12:50 UTC" }
+        ],
+        pendingActions: [
+          "Crowdfunding Post @ 13:05 UTC",
+          "Check for new replies",
+          "Engage with crypto submolt"
+        ]
+      },
+      projects: [
         {
-          "id": "moltflip",
-          "name": "🎰 MOLTFLIP",
-          "status": "in-progress",
-          "priority": "high",
-          "progress": 85,
-          "description": "Coinflip Casino für AI Agents - PvE & PvP",
-          "url": "https://miosjarvis-afk.github.io/moltflip/",
-          "tasks": [
-            {"task": "Smart Contract", "done": true},
-            {"task": "Casino UI", "done": true},
-            {"task": "Production Server", "done": true},
-            {"task": "SDK", "done": true},
-            {"task": "GitHub Pages Deploy", "done": true},
-            {"task": "Devnet Funding", "done": false},
-            {"task": "VRF Integration", "done": false}
-          ]
+          name: "🎰 MOLTFLIP",
+          status: "live",
+          url: "https://miosjarvis-afk.github.io/moltflip/",
+          progress: 85,
+          tasks: { done: 5, total: 7 }
         },
         {
-          "id": "moltbook",
-          "name": "🦞 Moltbook Marketing",
-          "status": "planned",
-          "priority": "high",
-          "progress": 0,
-          "description": "Community Building auf Moltbook + Twitter",
-          "tasks": [
-            {"task": "Twitter @moltflip", "done": false},
-            {"task": "Moltbook Sign-up", "done": false},
-            {"task": "Content Strategy", "done": false},
-            {"task": "Launch Posts", "done": false}
-          ]
+          name: "🦞 Moltbook Marketing",
+          status: "building",
+          progress: 30,
+          tasks: { done: 3, total: 10 }
         },
         {
-          "id": "ma-leads",
-          "name": "📊 M&A Lead Research",
-          "status": "in-progress",
-          "priority": "medium",
-          "progress": 10,
-          "description": "928 Leads analysieren für M&A Consulting",
-          "tasks": [
-            {"task": "First 80 Leads", "done": true},
-            {"task": "Remaining 848", "done": false}
-          ]
-        },
-        {
-          "id": "dashboard",
-          "name": "🦾 Mission Control",
-          "status": "done",
-          "priority": "low",
-          "progress": 100,
-          "description": "Projekt-Dashboard mit Auth",
-          "tasks": [
-            {"task": "Dashboard UI", "done": true},
-            {"task": "Token Auth", "done": true},
-            {"task": "GitHub Pages Deploy", "done": true}
-          ]
+          name: "🦾 Mission Control",
+          status: "live",
+          url: "https://miosjarvis-afk.github.io/mission-control/",
+          progress: 100,
+          tasks: { done: 3, total: 3 }
         }
-      ]
+      ],
+      twitter: {
+        handle: "@moltflip",
+        status: "paused",
+        note: "Browser automation blocked"
+      }
     };
 
-    function render(data) {
-      const statusCounts = { done: 0, 'in-progress': 0, blocked: 0, planned: 0 };
-      data.projects.forEach(p => statusCounts[p.status] = (statusCounts[p.status] || 0) + 1);
+    function render() {
+      const treasuryColor = data.treasury.status === 'funded' ? 'green' : 'yellow';
       
-      const avgProgress = data.projects.length 
-        ? Math.round(data.projects.reduce((a, p) => a + p.progress, 0) / data.projects.length)
-        : 0;
-
       document.getElementById('app').innerHTML = `
         <div class="header">
           <h1>🦾 Mission Control</h1>
           <div class="mission">${data.mission}</div>
         </div>
         
-        <div class="stats">
-          <div class="stat">
-            <div class="stat-value blue">${data.projects.length}</div>
-            <div class="stat-label">Projekte</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value green">${statusCounts.done}</div>
-            <div class="stat-label">Fertig</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value yellow">${statusCounts['in-progress']}</div>
-            <div class="stat-label">Aktiv</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">${avgProgress}%</div>
-            <div class="stat-label">Ø Progress</div>
-          </div>
-        </div>
-
-        <div class="projects">
-          ${data.projects.map(p => `
-            <div class="project ${p.priority}">
-              <div class="project-header">
-                <div class="project-name">${p.url ? `<a href="${p.url}" target="_blank" style="color:inherit;text-decoration:none">${p.name} ↗</a>` : p.name}</div>
-                <div class="project-status status-${p.status}">${p.status.replace('-', ' ')}</div>
+        <div class="grid">
+          <!-- Treasury Card -->
+          <div class="card ${data.treasury.status === 'funded' ? 'highlight' : 'warning'}">
+            <h2><span class="icon">💰</span> Treasury</h2>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-value ${treasuryColor}">${data.treasury.balance}</div>
+                <div class="stat-label">Balance</div>
               </div>
-              <div class="project-desc">${p.description}</div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: ${p.progress}%"></div>
-              </div>
-              <div class="tasks">
-                ${p.tasks.map(t => `<span class="task ${t.done ? 'done' : ''}">${t.task}</span>`).join('')}
+              <div class="stat">
+                <div class="stat-value">${data.treasury.target}</div>
+                <div class="stat-label">Target</div>
               </div>
             </div>
-          `).join('')}
+            <div class="wallet-address">
+              <a href="https://solscan.io/account/${data.treasury.wallet}" target="_blank">${data.treasury.wallet}</a>
+            </div>
+          </div>
+          
+          <!-- Moltbook Stats Card -->
+          <div class="card highlight">
+            <h2><span class="icon">🦞</span> Moltbook @${data.moltbook.account}</h2>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-value blue">${data.moltbook.stats.posts}</div>
+                <div class="stat-label">Posts</div>
+              </div>
+              <div class="stat">
+                <div class="stat-value blue">${data.moltbook.stats.comments}</div>
+                <div class="stat-label">Comments</div>
+              </div>
+              <div class="stat">
+                <div class="stat-value green">${data.moltbook.stats.upvotes}</div>
+                <div class="stat-label">Upvotes</div>
+              </div>
+              <div class="stat">
+                <div class="stat-value">${data.moltbook.stats.karma}</div>
+                <div class="stat-label">Karma</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Moltbook Activity Feed -->
+          <div class="card">
+            <h2><span class="icon">📡</span> Recent Activity</h2>
+            <div class="activity-feed">
+              ${data.moltbook.recentActivity.map(a => `
+                <div class="activity-item">
+                  <span class="activity-type ${a.type}">${a.type}</span>
+                  ${a.link ? `<a href="${a.link}" target="_blank" style="color:#fff">${a.text}</a>` : a.text}
+                  <div class="activity-time">${a.time}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <!-- Pending Actions -->
+          <div class="card warning">
+            <h2><span class="icon">⏰</span> Pending Actions</h2>
+            <div class="activity-feed">
+              ${data.moltbook.pendingActions.map(a => `
+                <div class="activity-item">• ${a}</div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <!-- Projects Overview -->
+          <div class="card" style="grid-column: span 2;">
+            <h2><span class="icon">🚀</span> Projects</h2>
+            <div class="project-list">
+              ${data.projects.map(p => `
+                <div class="project-item">
+                  <div>
+                    <div class="project-name">${p.url ? `<a href="${p.url}" target="_blank" style="color:#fff">${p.name}</a>` : p.name}</div>
+                    <div style="font-size:0.8em;color:#666">${p.tasks.done}/${p.tasks.total} tasks • ${p.progress}%</div>
+                  </div>
+                  <span class="project-status status-${p.status}">${p.status}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
         </div>
 
         <div class="footer">
@@ -378,8 +376,8 @@
     let autoRefreshInterval = null;
     
     function refresh() {
-      dashboardData.lastUpdated = new Date().toISOString();
-      render(dashboardData);
+      data.lastUpdated = new Date().toISOString();
+      render();
     }
 
     function toggleAutoRefresh() {
@@ -398,8 +396,6 @@
     }
 
     document.getElementById('autoRefresh').onclick = toggleAutoRefresh;
-
-    // Start
     checkAuth();
   </script>
 </body>
