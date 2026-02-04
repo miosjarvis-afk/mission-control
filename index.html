@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mission Control</title>
+  <title>Mission Control - Jarvis</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -13,9 +13,10 @@
       min-height: 100vh;
       padding: 20px;
     }
+    
     .header {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       padding-bottom: 20px;
       border-bottom: 1px solid #222;
     }
@@ -26,27 +27,58 @@
     }
     .header .mission {
       color: #888;
-      font-size: 0.9em;
+      font-size: 0.85em;
       font-style: italic;
     }
-    .stats {
+    
+    .quicklinks {
+      max-width: 1200px;
+      margin: 0 auto 30px;
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 30px;
+      gap: 10px;
       flex-wrap: wrap;
+      justify-content: center;
+    }
+    .quicklink {
+      padding: 8px 16px;
+      background: #12121a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #3b82f6;
+      font-size: 0.9em;
+      transition: all 0.2s;
+    }
+    .quicklink:hover {
+      background: #1a1a24;
+      border-color: #3b82f6;
+      transform: translateY(-2px);
+    }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      max-width: 1200px;
+      margin: 0 auto 35px;
     }
     .stat {
+      background: #12121a;
+      border-radius: 12px;
+      padding: 15px;
       text-align: center;
+      border: 1px solid #222;
     }
     .stat-value {
       font-size: 2em;
       font-weight: bold;
+      margin-bottom: 5px;
     }
     .stat-label {
-      font-size: 0.8em;
+      font-size: 0.75em;
       color: #666;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     .stat-value.green { color: #22c55e; }
     .stat-value.yellow { color: #eab308; }
@@ -54,12 +86,15 @@
     .stat-value.blue { color: #3b82f6; }
     .stat-value.purple { color: #a855f7; }
     
-    .section {
+    .container {
       max-width: 1200px;
-      margin: 0 auto 40px;
+      margin: 0 auto;
+      display: grid;
+      gap: 25px;
     }
+    
     .section-title {
-      font-size: 1.4em;
+      font-size: 1.3em;
       margin-bottom: 15px;
       color: #fff;
       display: flex;
@@ -69,128 +104,72 @@
     .section-title::before {
       content: '';
       width: 4px;
-      height: 24px;
+      height: 22px;
       background: linear-gradient(180deg, #3b82f6, #8b5cf6);
       border-radius: 2px;
     }
     
-    .subagents {
+    .grid {
       display: grid;
       gap: 15px;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     }
-    .subagent {
+    
+    .card {
       background: #12121a;
       border-radius: 12px;
       padding: 18px;
-      border: 1px solid #222;
-      position: relative;
+      border-left: 4px solid #333;
+      transition: transform 0.2s;
     }
-    .subagent.running { border-color: #3b82f644; }
-    .subagent.completed { border-color: #22c55e44; }
-    .subagent.failed { border-color: #ef444444; }
+    .card:hover { transform: translateY(-2px); }
+    .card.critical { border-left-color: #ef4444; }
+    .card.high { border-left-color: #eab308; }
+    .card.medium { border-left-color: #3b82f6; }
+    .card.low { border-left-color: #22c55e; }
+    .card.running { border-left-color: #3b82f6; }
+    .card.completed { border-left-color: #22c55e; }
     
-    .subagent-header {
+    .card-header {
       display: flex;
       justify-content: space-between;
       align-items: start;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      gap: 10px;
     }
-    .subagent-label {
-      font-size: 1.1em;
+    .card-title {
+      font-size: 1.15em;
       font-weight: 600;
       color: #fff;
     }
-    .subagent-status {
+    .badge {
       padding: 3px 10px;
       border-radius: 12px;
       font-size: 0.7em;
       text-transform: uppercase;
       font-weight: 600;
+      white-space: nowrap;
     }
-    .subagent-status.running { background: #3b82f622; color: #3b82f6; }
-    .subagent-status.completed { background: #22c55e22; color: #22c55e; }
-    .subagent-status.failed { background: #ef444422; color: #ef4444; }
+    .badge.done { background: #22c55e22; color: #22c55e; }
+    .badge.live { background: #22c55e22; color: #22c55e; }
+    .badge.active { background: #3b82f622; color: #3b82f6; }
+    .badge.running { background: #3b82f622; color: #3b82f6; }
+    .badge.completed { background: #22c55e22; color: #22c55e; }
+    .badge.blocked { background: #ef444422; color: #ef4444; }
     
-    .subagent-task {
+    .card-desc {
       color: #888;
       font-size: 0.85em;
       margin-bottom: 12px;
       line-height: 1.4;
     }
-    .subagent-meta {
-      display: flex;
-      gap: 15px;
-      font-size: 0.75em;
-      color: #666;
-      flex-wrap: wrap;
-    }
-    .subagent-meta span {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .subagent-session {
-      font-family: monospace;
-      font-size: 0.7em;
-      color: #444;
-      margin-top: 8px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
     
-    .projects {
-      display: grid;
-      gap: 15px;
-    }
-    .project {
-      background: #12121a;
-      border-radius: 12px;
-      padding: 20px;
-      border-left: 4px solid #333;
-    }
-    .project.critical { border-left-color: #ef4444; }
-    .project.high { border-left-color: #eab308; }
-    .project.medium { border-left-color: #3b82f6; }
-    .project.low { border-left-color: #22c55e; }
-    
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .project-name {
-      font-size: 1.2em;
-      font-weight: 600;
-    }
-    .project-status {
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75em;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    .status-done { background: #22c55e22; color: #22c55e; }
-    .status-live { background: #22c55e22; color: #22c55e; }
-    .status-active { background: #3b82f622; color: #3b82f6; }
-    .status-in-progress { background: #3b82f622; color: #3b82f6; }
-    .status-blocked { background: #ef444422; color: #ef4444; }
-    .status-planned { background: #66666622; color: #666; }
-    
-    .project-desc {
-      color: #888;
-      font-size: 0.9em;
-      margin-bottom: 15px;
-    }
     .progress-bar {
-      height: 6px;
-      background: #222;
+      height: 5px;
+      background: #1a1a24;
       border-radius: 3px;
       overflow: hidden;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
     .progress-fill {
       height: 100%;
@@ -198,79 +177,84 @@
       border-radius: 3px;
       transition: width 0.3s ease;
     }
-    .tasks {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .task {
-      font-size: 0.8em;
-      padding: 4px 10px;
-      background: #1a1a24;
-      border-radius: 6px;
-      color: #888;
-    }
-    .task.done {
-      text-decoration: line-through;
-      color: #444;
-    }
-    .task.done::before { content: "✓ "; color: #22c55e; }
     
-    .project-notes {
+    .meta {
+      display: flex;
+      gap: 12px;
+      font-size: 0.75em;
+      color: #666;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .meta span { display: flex; align-items: center; gap: 4px; }
+    
+    .notes {
       margin-top: 10px;
       padding: 10px;
       background: #1a1a24;
       border-radius: 6px;
       font-size: 0.8em;
       color: #888;
+      line-height: 1.4;
     }
-    .project-url {
+    
+    .link {
       margin-top: 8px;
       font-size: 0.8em;
     }
-    .project-url a {
+    .link a {
       color: #3b82f6;
       text-decoration: none;
     }
-    .project-url a:hover { text-decoration: underline; }
+    .link a:hover { text-decoration: underline; }
     
     .footer {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #222;
       color: #444;
       font-size: 0.8em;
     }
-    .footer .refresh {
+    .refresh-btn {
       color: #3b82f6;
       cursor: pointer;
       margin-left: 10px;
     }
-    .footer .refresh:hover { text-decoration: underline; }
+    .refresh-btn:hover { text-decoration: underline; }
     
     #loading {
       text-align: center;
       padding: 50px;
       color: #666;
     }
-    .auto-refresh {
+    
+    .auto-refresh-indicator {
       position: fixed;
       bottom: 15px;
       right: 15px;
       background: #12121a;
       padding: 8px 14px;
       border-radius: 20px;
-      font-size: 0.75em;
+      font-size: 0.7em;
       color: #666;
       border: 1px solid #222;
+      cursor: pointer;
     }
-    .auto-refresh.active { color: #22c55e; border-color: #22c55e44; }
+    .auto-refresh-indicator.active {
+      color: #22c55e;
+      border-color: #22c55e44;
+    }
   </style>
 </head>
 <body>
   <div id="app">
     <div id="loading">🦾 Lade Mission Control...</div>
   </div>
-  <div class="auto-refresh" id="autoRefresh">Auto-Refresh: <span id="refreshStatus">AUS</span></div>
+  
+  <div class="auto-refresh-indicator" id="autoRefresh">
+    Auto-Refresh: <span id="refreshStatus">AUS</span>
+  </div>
 
   <script>
     let autoRefreshInterval = null;
@@ -280,7 +264,7 @@
         const response = await fetch('index.json?t=' + Date.now());
         return await response.json();
       } catch (e) {
-        console.error('Fehler beim Laden:', e);
+        console.error('Load error:', e);
         return null;
       }
     }
@@ -291,8 +275,10 @@
         return;
       }
 
-      const statusCounts = { done: 0, 'in-progress': 0, active: 0, live: 0, blocked: 0 };
-      data.projects.forEach(p => statusCounts[p.status] = (statusCounts[p.status] || 0) + 1);
+      const statusCounts = {};
+      data.projects.forEach(p => {
+        statusCounts[p.status] = (statusCounts[p.status] || 0) + 1;
+      });
       
       const avgProgress = data.projects.length 
         ? Math.round(data.projects.reduce((a, p) => a + p.progress, 0) / data.projects.length)
@@ -307,6 +293,13 @@
           <div class="mission">${data.mission}</div>
         </div>
         
+        <div class="quicklinks">
+          <a href="https://miosjarvis-afk.github.io/moltflip/" target="_blank" class="quicklink">🎰 MOLTFLIP</a>
+          <a href="https://moltbook.com/u/moltflip" target="_blank" class="quicklink">📢 Moltbook</a>
+          <a href="https://solscan.io/account/ChWbRpZfZy77rs5VNfXZ3hpCw5rkpyFcho34Pq7o6RBk" target="_blank" class="quicklink">💰 Treasury</a>
+          <a href="https://www.moltbook.com/post/39e62b66-8b70-4049-a618-852ba3f4d7db" target="_blank" class="quicklink">🚀 Launch Post</a>
+        </div>
+        
         <div class="stats">
           <div class="stat">
             <div class="stat-value blue">${data.projects.length}</div>
@@ -317,11 +310,11 @@
             <div class="stat-label">Sub-Agents</div>
           </div>
           <div class="stat">
-            <div class="stat-value green">${statusCounts.done + statusCounts.live}</div>
+            <div class="stat-value green">${statusCounts.done || 0}</div>
             <div class="stat-label">Fertig</div>
           </div>
           <div class="stat">
-            <div class="stat-value yellow">${statusCounts['in-progress'] + statusCounts.active}</div>
+            <div class="stat-value yellow">${statusCounts.active || 0}</div>
             <div class="stat-label">Aktiv</div>
           </div>
           <div class="stat">
@@ -330,55 +323,53 @@
           </div>
         </div>
 
-        ${activeAgents.length > 0 ? `
-        <div class="section">
-          <div class="section-title">🤖 Active Sub-Agents</div>
-          <div class="subagents">
-            ${activeAgents.map(agent => `
-              <div class="subagent ${agent.status}">
-                <div class="subagent-header">
-                  <div class="subagent-label">${agent.label}</div>
-                  <div class="subagent-status ${agent.status}">${agent.status}</div>
+        <div class="container">
+          ${runningAgents > 0 ? `
+          <div>
+            <div class="section-title">🤖 Active Sub-Agents</div>
+            <div class="grid">
+              ${activeAgents.filter(a => a.status === 'running').map(agent => `
+                <div class="card ${agent.status}">
+                  <div class="card-header">
+                    <div class="card-title">${agent.label}</div>
+                    <div class="badge ${agent.status}">${agent.status}</div>
+                  </div>
+                  <div class="card-desc">${agent.task || 'Working...'}</div>
+                  <div class="meta">
+                    <span>🧠 ${agent.model}</span>
+                    <span>⏱️ ${agent.timeout}</span>
+                    <span>🕐 ${new Date(agent.started).toLocaleTimeString('de-DE', {hour: '2-digit', minute: '2-digit'})}</span>
+                  </div>
                 </div>
-                <div class="subagent-task">${agent.task || 'Working...'}</div>
-                <div class="subagent-meta">
-                  <span>🧠 ${agent.model}</span>
-                  <span>⏱️ ${agent.timeout}</span>
-                  <span>🕐 ${new Date(agent.started).toLocaleTimeString('de-DE')}</span>
-                </div>
-                <div class="subagent-session">${agent.sessionKey}</div>
-              </div>
-            `).join('')}
+              `).join('')}
+            </div>
           </div>
-        </div>
-        ` : ''}
+          ` : ''}
 
-        <div class="section">
-          <div class="section-title">📊 Projekte</div>
-          <div class="projects">
-            ${data.projects.map(p => `
-              <div class="project ${p.priority}">
-                <div class="project-header">
-                  <div class="project-name">${p.name}</div>
-                  <div class="project-status status-${p.status}">${p.status.replace('-', ' ')}</div>
+          <div>
+            <div class="section-title">📊 Projekte</div>
+            <div class="grid">
+              ${data.projects.map(p => `
+                <div class="card ${p.priority}">
+                  <div class="card-header">
+                    <div class="card-title">${p.name}</div>
+                    <div class="badge ${p.status}">${p.status}</div>
+                  </div>
+                  <div class="card-desc">${p.description}</div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${p.progress}%"></div>
+                  </div>
+                  ${p.notes ? `<div class="notes">${p.notes}</div>` : ''}
+                  ${p.url ? `<div class="link">🔗 <a href="${p.url}" target="_blank">${p.url.replace('https://', '').substring(0, 50)}...</a></div>` : ''}
                 </div>
-                <div class="project-desc">${p.description}</div>
-                <div class="progress-bar">
-                  <div class="progress-fill" style="width: ${p.progress}%"></div>
-                </div>
-                <div class="tasks">
-                  ${p.tasks.map(t => `<span class="task ${t.done ? 'done' : ''}">${t.task}</span>`).join('')}
-                </div>
-                ${p.notes ? `<div class="project-notes">${p.notes}</div>` : ''}
-                ${p.url ? `<div class="project-url">🔗 <a href="${p.url}" target="_blank">${p.url}</a></div>` : ''}
-              </div>
-            `).join('')}
+              `).join('')}
+            </div>
           </div>
         </div>
 
         <div class="footer">
           Aktualisiert: ${new Date(data.lastUpdated).toLocaleString('de-DE')}
-          <span class="refresh" onclick="refresh()">↻ Neu laden</span>
+          <span class="refresh-btn" onclick="refresh()">↻ Neu laden</span>
         </div>
       `;
     }
@@ -405,12 +396,9 @@
 
     document.getElementById('autoRefresh').onclick = toggleAutoRefresh;
 
-    // Initial load
+    // Initial load + auto-refresh
     refresh();
-    
-    // Auto-refresh standardmäßig an
     toggleAutoRefresh();
   </script>
 </body>
-</html>
 </html>
