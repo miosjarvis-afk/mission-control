@@ -99,6 +99,23 @@
     }
     .link-btn:hover { border-color: #3b82f6; }
     
+    /* Projects */
+    .project-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 15px; border-bottom: 1px solid #1a1a24;
+    }
+    .project-item:last-child { border-bottom: none; }
+    .project-name { font-size: 0.9em; }
+    .project-name a { color: #fff; text-decoration: none; }
+    .project-name a:hover { color: #3b82f6; }
+    .project-meta { display: flex; align-items: center; gap: 10px; }
+    .project-progress { width: 60px; height: 6px; background: #1a1a24; border-radius: 3px; overflow: hidden; }
+    .project-progress-fill { height: 100%; background: #3b82f6; border-radius: 3px; }
+    .project-status { font-size: 0.7em; padding: 3px 8px; border-radius: 4px; }
+    .status-live { background: #22c55e22; color: #22c55e; }
+    .status-active { background: #3b82f622; color: #3b82f6; }
+    .status-paused { background: #66666622; color: #888; }
+    
     .footer { text-align: center; margin-top: 30px; color: #444; font-size: 0.75em; }
     .footer span { cursor: pointer; margin: 0 10px; }
     .footer .refresh:hover { color: #3b82f6; }
@@ -160,6 +177,12 @@
         { icon: "🎰", label: "MOLTFLIP", url: "https://miosjarvis-afk.github.io/moltflip/" },
         { icon: "🦞", label: "Moltbook", url: "https://moltbook.com/u/moltflip" },
         { icon: "💻", label: "GitHub", url: "https://github.com/miosjarvis-afk/moltflip" }
+      ],
+      projects: [
+        { name: "🎰 MOLTFLIP", status: "live", progress: 85, url: "https://miosjarvis-afk.github.io/moltflip/" },
+        { name: "🦞 Moltbook Marketing", status: "active", progress: 30 },
+        { name: "🦾 Mission Control", status: "live", progress: 100, url: "https://miosjarvis-afk.github.io/mission-control/" },
+        { name: "📊 M&A Leads", status: "paused", progress: 10 }
       ]
     };
 
@@ -211,6 +234,21 @@
                   ${a.text}
                 </span>
                 <span class="activity-time">${a.time}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">🚀 Projekte</div>
+          <div class="activity-list">
+            ${D.projects.map(p => `
+              <div class="project-item">
+                <span class="project-name">${p.url ? `<a href="${p.url}" target="_blank">${p.name}</a>` : p.name}</span>
+                <div class="project-meta">
+                  <div class="project-progress"><div class="project-progress-fill" style="width:${p.progress}%"></div></div>
+                  <span class="project-status status-${p.status}">${p.status}</span>
+                </div>
               </div>
             `).join('')}
           </div>
