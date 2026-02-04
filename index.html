@@ -13,208 +13,403 @@
       min-height: 100vh;
       padding: 20px;
     }
-    .auth-screen {
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; min-height: 80vh; text-align: center;
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #222;
     }
-    .auth-screen h1 { font-size: 2em; margin-bottom: 10px; }
-    .auth-screen input {
-      background: #12121a; border: 1px solid #333; color: #fff;
-      padding: 12px 20px; border-radius: 8px; width: 280px; margin-bottom: 15px;
+    .header h1 {
+      font-size: 1.8em;
+      color: #fff;
+      margin-bottom: 8px;
     }
-    .auth-screen button {
-      background: #3b82f6; color: #fff; border: none;
-      padding: 12px 30px; border-radius: 8px; cursor: pointer;
+    .header .mission {
+      color: #888;
+      font-size: 0.9em;
+      font-style: italic;
     }
-    .auth-screen .error { color: #ef4444; margin-top: 15px; display: none; }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 2em;
+      font-weight: bold;
+    }
+    .stat-label {
+      font-size: 0.8em;
+      color: #666;
+      text-transform: uppercase;
+    }
+    .stat-value.green { color: #22c55e; }
+    .stat-value.yellow { color: #eab308; }
+    .stat-value.red { color: #ef4444; }
+    .stat-value.blue { color: #3b82f6; }
+    .stat-value.purple { color: #a855f7; }
     
-    .container { max-width: 700px; margin: 0 auto; }
+    .section {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+    }
+    .section-title {
+      font-size: 1.4em;
+      margin-bottom: 15px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+      border-radius: 2px;
+    }
     
-    .header { text-align: center; margin-bottom: 30px; }
-    .header h1 { font-size: 1.6em; color: #fff; margin-bottom: 5px; }
-    .header .sub { color: #666; font-size: 0.85em; }
-    
-    /* Project Cards */
-    .projects { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
-    .project-card {
+    .subagents {
+      display: grid;
+      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+    .subagent {
       background: #12121a;
       border-radius: 12px;
-      padding: 18px 20px;
-      border-left: 4px solid #333;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
+      padding: 18px;
+      border: 1px solid #222;
+      position: relative;
     }
-    .project-card:hover { background: #1a1a24; border-left-color: #3b82f6; }
-    .project-card.status-live { border-left-color: #22c55e; }
-    .project-card.status-active { border-left-color: #3b82f6; }
-    .project-card.status-paused { border-left-color: #666; }
-    .project-card.status-funding { border-left-color: #eab308; }
+    .subagent.running { border-color: #3b82f644; }
+    .subagent.completed { border-color: #22c55e44; }
+    .subagent.failed { border-color: #ef444444; }
     
-    .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-    .project-name { font-size: 1.1em; font-weight: 600; }
-    .project-status {
-      font-size: 0.7em; padding: 4px 10px; border-radius: 12px; text-transform: uppercase; font-weight: 600;
+    .subagent-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 12px;
     }
+    .subagent-label {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #fff;
+    }
+    .subagent-status {
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.7em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .subagent-status.running { background: #3b82f622; color: #3b82f6; }
+    .subagent-status.completed { background: #22c55e22; color: #22c55e; }
+    .subagent-status.failed { background: #ef444422; color: #ef4444; }
+    
+    .subagent-task {
+      color: #888;
+      font-size: 0.85em;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .subagent-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 0.75em;
+      color: #666;
+      flex-wrap: wrap;
+    }
+    .subagent-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .subagent-session {
+      font-family: monospace;
+      font-size: 0.7em;
+      color: #444;
+      margin-top: 8px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .projects {
+      display: grid;
+      gap: 15px;
+    }
+    .project {
+      background: #12121a;
+      border-radius: 12px;
+      padding: 20px;
+      border-left: 4px solid #333;
+    }
+    .project.critical { border-left-color: #ef4444; }
+    .project.high { border-left-color: #eab308; }
+    .project.medium { border-left-color: #3b82f6; }
+    .project.low { border-left-color: #22c55e; }
+    
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .project-name {
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+    .project-status {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .status-done { background: #22c55e22; color: #22c55e; }
     .status-live { background: #22c55e22; color: #22c55e; }
     .status-active { background: #3b82f622; color: #3b82f6; }
-    .status-paused { background: #66666622; color: #888; }
-    .status-funding { background: #eab30822; color: #eab308; }
+    .status-in-progress { background: #3b82f622; color: #3b82f6; }
+    .status-blocked { background: #ef444422; color: #ef4444; }
+    .status-planned { background: #66666622; color: #666; }
     
-    .project-desc { color: #888; font-size: 0.85em; margin-bottom: 12px; }
-    
-    .project-progress { display: flex; align-items: center; gap: 10px; }
-    .progress-bar { flex: 1; height: 6px; background: #222; border-radius: 3px; overflow: hidden; }
-    .progress-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #8b5cf6); border-radius: 3px; }
-    .progress-text { font-size: 0.75em; color: #666; min-width: 35px; }
-    
-    .project-stats { display: flex; gap: 15px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #222; }
-    .stat-mini { font-size: 0.8em; }
-    .stat-mini span { color: #fff; font-weight: 600; }
-    
-    /* Quick Links */
-    .links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-    .link-btn {
-      background: #12121a; color: #888; text-decoration: none;
-      padding: 8px 14px; border-radius: 8px; font-size: 0.8em;
-      border: 1px solid #222; transition: all 0.2s;
+    .project-desc {
+      color: #888;
+      font-size: 0.9em;
+      margin-bottom: 15px;
     }
-    .link-btn:hover { border-color: #3b82f6; color: #fff; }
+    .progress-bar {
+      height: 6px;
+      background: #222;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+    .tasks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .task {
+      font-size: 0.8em;
+      padding: 4px 10px;
+      background: #1a1a24;
+      border-radius: 6px;
+      color: #888;
+    }
+    .task.done {
+      text-decoration: line-through;
+      color: #444;
+    }
+    .task.done::before { content: "✓ "; color: #22c55e; }
     
-    .footer { text-align: center; margin-top: 25px; color: #444; font-size: 0.75em; }
-    .footer span { cursor: pointer; margin: 0 8px; }
-    .footer span:hover { color: #888; }
+    .project-notes {
+      margin-top: 10px;
+      padding: 10px;
+      background: #1a1a24;
+      border-radius: 6px;
+      font-size: 0.8em;
+      color: #888;
+    }
+    .project-url {
+      margin-top: 8px;
+      font-size: 0.8em;
+    }
+    .project-url a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    .project-url a:hover { text-decoration: underline; }
     
-    #dashboard { display: none; }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #444;
+      font-size: 0.8em;
+    }
+    .footer .refresh {
+      color: #3b82f6;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .footer .refresh:hover { text-decoration: underline; }
+    
+    #loading {
+      text-align: center;
+      padding: 50px;
+      color: #666;
+    }
+    .auto-refresh {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: #12121a;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.75em;
+      color: #666;
+      border: 1px solid #222;
+    }
+    .auto-refresh.active { color: #22c55e; border-color: #22c55e44; }
   </style>
 </head>
 <body>
-  <div id="auth" class="auth-screen">
-    <h1>🦾 Mission Control</h1>
-    <input type="password" id="tokenInput" placeholder="Access Token" onkeypress="if(event.key==='Enter')authenticate()">
-    <button onclick="authenticate()">Login</button>
-    <div class="error" id="error">❌</div>
+  <div id="app">
+    <div id="loading">🦾 Lade Mission Control...</div>
   </div>
-
-  <div id="dashboard">
-    <div class="container" id="app"></div>
-  </div>
+  <div class="auto-refresh" id="autoRefresh">Auto-Refresh: <span id="refreshStatus">AUS</span></div>
 
   <script>
-    const TOKEN = '917d6be735a46dd4cd74bd0aa1700f99';
-    
-    function checkAuth() {
-      const urlParams = new URLSearchParams(window.location.search);
-      let token = urlParams.get('token') || localStorage.getItem('mc_token');
-      if (token === TOKEN) {
-        localStorage.setItem('mc_token', token);
-        if (urlParams.has('token')) window.history.replaceState({}, '', window.location.pathname);
-        document.getElementById('auth').style.display = 'none';
-        document.getElementById('dashboard').style.display = 'block';
-        render();
+    let autoRefreshInterval = null;
+
+    async function loadData() {
+      try {
+        const response = await fetch('index.json?t=' + Date.now());
+        return await response.json();
+      } catch (e) {
+        console.error('Fehler beim Laden:', e);
+        return null;
       }
     }
 
-    function authenticate() {
-      if (document.getElementById('tokenInput').value === TOKEN) {
-        localStorage.setItem('mc_token', TOKEN);
-        location.reload();
-      } else {
-        document.getElementById('error').style.display = 'block';
+    function render(data) {
+      if (!data) {
+        document.getElementById('app').innerHTML = '<div id="loading">❌ Fehler beim Laden</div>';
+        return;
       }
-    }
 
-    function logout() { localStorage.removeItem('mc_token'); location.reload(); }
+      const statusCounts = { done: 0, 'in-progress': 0, active: 0, live: 0, blocked: 0 };
+      data.projects.forEach(p => statusCounts[p.status] = (statusCounts[p.status] || 0) + 1);
+      
+      const avgProgress = data.projects.length 
+        ? Math.round(data.projects.reduce((a, p) => a + p.progress, 0) / data.projects.length)
+        : 0;
 
-    // === PROJECT DATA ===
-    const projects = [
-      {
-        id: "moltflip",
-        name: "🎰 MOLTFLIP",
-        desc: "Coinflip Casino für AI Agents",
-        status: "funding",
-        progress: 85,
-        link: "moltflip.html",
-        stats: { treasury: "0 SOL", posts: 2, comments: 15 }
-      },
-      {
-        id: "marketing",
-        name: "🦞 Moltbook Marketing",
-        desc: "Community Building & Hype",
-        status: "active",
-        progress: 30,
-        link: "moltflip.html",
-        stats: { upvotes: 2, karma: 2 }
-      },
-      {
-        id: "dashboard",
-        name: "🦾 Mission Control",
-        desc: "Projekt Dashboard",
-        status: "live",
-        progress: 100,
-        link: null,
-        stats: {}
-      },
-      {
-        id: "ma-leads",
-        name: "📊 M&A Leads",
-        desc: "928 Leads für M&A Consulting",
-        status: "paused",
-        progress: 10,
-        link: null,
-        stats: { analyzed: "80/928" }
-      }
-    ];
+      const activeAgents = data.activeSubAgents || [];
+      const runningAgents = activeAgents.filter(a => a.status === 'running').length;
 
-    const quickLinks = [
-      { label: "🎰 MOLTFLIP Live", url: "https://miosjarvis-afk.github.io/moltflip/" },
-      { label: "🦞 Moltbook", url: "https://moltbook.com/u/moltflip" },
-      { label: "💻 GitHub", url: "https://github.com/miosjarvis-afk" },
-      { label: "💰 Treasury", url: "https://solscan.io/account/ChWbRpZfZy77rs5VNfXZ3hpCw5rkpyFcho34Pq7o6RBk?cluster=devnet" }
-    ];
-
-    function render() {
       document.getElementById('app').innerHTML = `
         <div class="header">
           <h1>🦾 Mission Control</h1>
-          <div class="sub">Projekt-Übersicht</div>
+          <div class="mission">${data.mission}</div>
         </div>
         
-        <div class="projects">
-          ${projects.map(p => `
-            <${p.link ? `a href="${p.link}"` : 'div'} class="project-card status-${p.status}">
-              <div class="project-header">
-                <span class="project-name">${p.name}</span>
-                <span class="project-status status-${p.status}">${p.status}</span>
-              </div>
-              <div class="project-desc">${p.desc}</div>
-              <div class="project-progress">
-                <div class="progress-bar"><div class="progress-fill" style="width:${p.progress}%"></div></div>
-                <span class="progress-text">${p.progress}%</span>
-              </div>
-              ${Object.keys(p.stats).length ? `
-                <div class="project-stats">
-                  ${Object.entries(p.stats).map(([k,v]) => `<span class="stat-mini">${k}: <span>${v}</span></span>`).join('')}
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value blue">${data.projects.length}</div>
+            <div class="stat-label">Projekte</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value purple">${activeAgents.length}</div>
+            <div class="stat-label">Sub-Agents</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value green">${statusCounts.done + statusCounts.live}</div>
+            <div class="stat-label">Fertig</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value yellow">${statusCounts['in-progress'] + statusCounts.active}</div>
+            <div class="stat-label">Aktiv</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">${avgProgress}%</div>
+            <div class="stat-label">Ø Progress</div>
+          </div>
+        </div>
+
+        ${activeAgents.length > 0 ? `
+        <div class="section">
+          <div class="section-title">🤖 Active Sub-Agents</div>
+          <div class="subagents">
+            ${activeAgents.map(agent => `
+              <div class="subagent ${agent.status}">
+                <div class="subagent-header">
+                  <div class="subagent-label">${agent.label}</div>
+                  <div class="subagent-status ${agent.status}">${agent.status}</div>
                 </div>
-              ` : ''}
-            </${p.link ? 'a' : 'div'}>
-          `).join('')}
+                <div class="subagent-task">${agent.task || 'Working...'}</div>
+                <div class="subagent-meta">
+                  <span>🧠 ${agent.model}</span>
+                  <span>⏱️ ${agent.timeout}</span>
+                  <span>🕐 ${new Date(agent.started).toLocaleTimeString('de-DE')}</span>
+                </div>
+                <div class="subagent-session">${agent.sessionKey}</div>
+              </div>
+            `).join('')}
+          </div>
         </div>
-        
-        <div class="links">
-          ${quickLinks.map(l => `<a href="${l.url}" target="_blank" class="link-btn">${l.label}</a>`).join('')}
+        ` : ''}
+
+        <div class="section">
+          <div class="section-title">📊 Projekte</div>
+          <div class="projects">
+            ${data.projects.map(p => `
+              <div class="project ${p.priority}">
+                <div class="project-header">
+                  <div class="project-name">${p.name}</div>
+                  <div class="project-status status-${p.status}">${p.status.replace('-', ' ')}</div>
+                </div>
+                <div class="project-desc">${p.description}</div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: ${p.progress}%"></div>
+                </div>
+                <div class="tasks">
+                  ${p.tasks.map(t => `<span class="task ${t.done ? 'done' : ''}">${t.task}</span>`).join('')}
+                </div>
+                ${p.notes ? `<div class="project-notes">${p.notes}</div>` : ''}
+                ${p.url ? `<div class="project-url">🔗 <a href="${p.url}" target="_blank">${p.url}</a></div>` : ''}
+              </div>
+            `).join('')}
+          </div>
         </div>
-        
+
         <div class="footer">
-          <span onclick="location.reload()">↻ Refresh</span>
-          <span onclick="logout()">Logout</span>
+          Aktualisiert: ${new Date(data.lastUpdated).toLocaleString('de-DE')}
+          <span class="refresh" onclick="refresh()">↻ Neu laden</span>
         </div>
       `;
     }
 
-    checkAuth();
+    async function refresh() {
+      const data = await loadData();
+      render(data);
+    }
+
+    function toggleAutoRefresh() {
+      const el = document.getElementById('autoRefresh');
+      const status = document.getElementById('refreshStatus');
+      if (autoRefreshInterval) {
+        clearInterval(autoRefreshInterval);
+        autoRefreshInterval = null;
+        el.classList.remove('active');
+        status.textContent = 'AUS';
+      } else {
+        autoRefreshInterval = setInterval(refresh, 5000);
+        el.classList.add('active');
+        status.textContent = 'AN (5s)';
+      }
+    }
+
+    document.getElementById('autoRefresh').onclick = toggleAutoRefresh;
+
+    // Initial load
+    refresh();
+    
+    // Auto-refresh standardmäßig an
+    toggleAutoRefresh();
   </script>
 </body>
 </html>
