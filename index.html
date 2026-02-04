@@ -18,10 +18,9 @@
       justify-content: center; min-height: 80vh; text-align: center;
     }
     .auth-screen h1 { font-size: 2em; margin-bottom: 10px; }
-    .auth-screen .subtitle { color: #666; margin-bottom: 30px; }
     .auth-screen input {
       background: #12121a; border: 1px solid #333; color: #fff;
-      padding: 12px 20px; border-radius: 8px; width: 300px; margin-bottom: 15px;
+      padding: 12px 20px; border-radius: 8px; width: 280px; margin-bottom: 15px;
     }
     .auth-screen button {
       background: #3b82f6; color: #fff; border: none;
@@ -29,108 +28,74 @@
     }
     .auth-screen .error { color: #ef4444; margin-top: 15px; display: none; }
     
-    .container { max-width: 600px; margin: 0 auto; }
+    .container { max-width: 700px; margin: 0 auto; }
     
     .header { text-align: center; margin-bottom: 30px; }
-    .header h1 { font-size: 1.5em; color: #fff; margin-bottom: 5px; }
-    .header .time { color: #666; font-size: 0.85em; }
+    .header h1 { font-size: 1.6em; color: #fff; margin-bottom: 5px; }
+    .header .sub { color: #666; font-size: 0.85em; }
     
-    /* Big Treasury Card */
-    .treasury {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      border-radius: 16px;
-      padding: 25px;
-      margin-bottom: 20px;
-      border: 1px solid #333;
+    /* Project Cards */
+    .projects { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+    .project-card {
+      background: #12121a;
+      border-radius: 12px;
+      padding: 18px 20px;
+      border-left: 4px solid #333;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
-    .treasury-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-    .treasury-label { color: #888; font-size: 0.9em; }
-    .treasury-status {
-      padding: 4px 12px; border-radius: 20px; font-size: 0.75em; font-weight: 600;
-    }
-    .status-funding { background: #eab30833; color: #eab308; }
-    .status-funded { background: #22c55e33; color: #22c55e; }
-    .treasury-balance { font-size: 2.5em; font-weight: bold; color: #fff; margin-bottom: 10px; }
-    .treasury-target { color: #666; font-size: 0.9em; margin-bottom: 15px; }
-    .treasury-wallet {
-      background: #0a0a0f; padding: 12px; border-radius: 8px;
-      font-family: monospace; font-size: 0.8em; word-break: break-all;
-    }
-    .treasury-wallet a { color: #3b82f6; text-decoration: none; }
+    .project-card:hover { background: #1a1a24; border-left-color: #3b82f6; }
+    .project-card.status-live { border-left-color: #22c55e; }
+    .project-card.status-active { border-left-color: #3b82f6; }
+    .project-card.status-paused { border-left-color: #666; }
+    .project-card.status-funding { border-left-color: #eab308; }
     
-    /* Stats Row */
-    .stats-row {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
-      margin-bottom: 20px;
+    .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .project-name { font-size: 1.1em; font-weight: 600; }
+    .project-status {
+      font-size: 0.7em; padding: 4px 10px; border-radius: 12px; text-transform: uppercase; font-weight: 600;
     }
-    .stat-box {
-      background: #12121a; border-radius: 12px; padding: 15px; text-align: center;
-    }
-    .stat-value { font-size: 1.5em; font-weight: bold; }
-    .stat-value.blue { color: #3b82f6; }
-    .stat-value.green { color: #22c55e; }
-    .stat-label { font-size: 0.7em; color: #666; text-transform: uppercase; margin-top: 4px; }
-    
-    /* Activity List */
-    .section { margin-bottom: 20px; }
-    .section-title { font-size: 0.9em; color: #888; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-    .activity-list { background: #12121a; border-radius: 12px; overflow: hidden; }
-    .activity-item {
-      padding: 12px 15px; border-bottom: 1px solid #1a1a24;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .activity-item:last-child { border-bottom: none; }
-    .activity-text { font-size: 0.9em; }
-    .activity-time { font-size: 0.75em; color: #666; }
-    .activity-badge {
-      font-size: 0.7em; padding: 2px 8px; border-radius: 4px; margin-right: 8px;
-    }
-    .badge-post { background: #8b5cf622; color: #8b5cf6; }
-    .badge-comment { background: #3b82f622; color: #3b82f6; }
-    .badge-pending { background: #eab30822; color: #eab308; }
-    
-    /* Quick Links */
-    .links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .link-btn {
-      background: #12121a; color: #fff; text-decoration: none;
-      padding: 10px 16px; border-radius: 8px; font-size: 0.85em;
-      display: flex; align-items: center; gap: 6px;
-      border: 1px solid #222; transition: border-color 0.2s;
-    }
-    .link-btn:hover { border-color: #3b82f6; }
-    
-    /* Projects */
-    .project-item {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 15px; border-bottom: 1px solid #1a1a24;
-    }
-    .project-item:last-child { border-bottom: none; }
-    .project-name { font-size: 0.9em; }
-    .project-name a { color: #fff; text-decoration: none; }
-    .project-name a:hover { color: #3b82f6; }
-    .project-meta { display: flex; align-items: center; gap: 10px; }
-    .project-progress { width: 60px; height: 6px; background: #1a1a24; border-radius: 3px; overflow: hidden; }
-    .project-progress-fill { height: 100%; background: #3b82f6; border-radius: 3px; }
-    .project-status { font-size: 0.7em; padding: 3px 8px; border-radius: 4px; }
     .status-live { background: #22c55e22; color: #22c55e; }
     .status-active { background: #3b82f622; color: #3b82f6; }
     .status-paused { background: #66666622; color: #888; }
+    .status-funding { background: #eab30822; color: #eab308; }
     
-    .footer { text-align: center; margin-top: 30px; color: #444; font-size: 0.75em; }
-    .footer span { cursor: pointer; margin: 0 10px; }
-    .footer .refresh:hover { color: #3b82f6; }
-    .footer .logout:hover { color: #ef4444; }
+    .project-desc { color: #888; font-size: 0.85em; margin-bottom: 12px; }
+    
+    .project-progress { display: flex; align-items: center; gap: 10px; }
+    .progress-bar { flex: 1; height: 6px; background: #222; border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #8b5cf6); border-radius: 3px; }
+    .progress-text { font-size: 0.75em; color: #666; min-width: 35px; }
+    
+    .project-stats { display: flex; gap: 15px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #222; }
+    .stat-mini { font-size: 0.8em; }
+    .stat-mini span { color: #fff; font-weight: 600; }
+    
+    /* Quick Links */
+    .links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .link-btn {
+      background: #12121a; color: #888; text-decoration: none;
+      padding: 8px 14px; border-radius: 8px; font-size: 0.8em;
+      border: 1px solid #222; transition: all 0.2s;
+    }
+    .link-btn:hover { border-color: #3b82f6; color: #fff; }
+    
+    .footer { text-align: center; margin-top: 25px; color: #444; font-size: 0.75em; }
+    .footer span { cursor: pointer; margin: 0 8px; }
+    .footer span:hover { color: #888; }
     
     #dashboard { display: none; }
   </style>
 </head>
 <body>
   <div id="auth" class="auth-screen">
-    <h1>🔐 Mission Control</h1>
-    <div class="subtitle">Access Token eingeben</div>
-    <input type="password" id="tokenInput" placeholder="Token..." onkeypress="if(event.key==='Enter')authenticate()">
-    <button onclick="authenticate()">→</button>
-    <div class="error" id="error">❌ Ungültig</div>
+    <h1>🦾 Mission Control</h1>
+    <input type="password" id="tokenInput" placeholder="Access Token" onkeypress="if(event.key==='Enter')authenticate()">
+    <button onclick="authenticate()">Login</button>
+    <div class="error" id="error">❌</div>
   </div>
 
   <div id="dashboard">
@@ -163,109 +128,88 @@
 
     function logout() { localStorage.removeItem('mc_token'); location.reload(); }
 
-    // === DATA (Updated by Jarvis) ===
-    const D = {
-      updated: "2026-02-04T12:59:00Z",
-      treasury: { balance: "0", target: "10-50", status: "funding", wallet: "ChWbRpZfZy77rs5VNfXZ3hpCw5rkpyFcho34Pq7o6RBk" },
-      moltbook: { posts: 1, comments: 15, upvotes: 2, karma: 2 },
-      activity: [
-        { type: "post", text: "MOLTFLIP Launch Post", time: "12:35" },
-        { type: "comment", text: "15 Comments auf verschiedenen Threads", time: "12:50" },
-        { type: "pending", text: "Crowdfunding Post", time: "13:05" }
-      ],
-      links: [
-        { icon: "🎰", label: "MOLTFLIP", url: "https://miosjarvis-afk.github.io/moltflip/" },
-        { icon: "🦞", label: "Moltbook", url: "https://moltbook.com/u/moltflip" },
-        { icon: "💻", label: "GitHub", url: "https://github.com/miosjarvis-afk/moltflip" }
-      ],
-      projects: [
-        { name: "🎰 MOLTFLIP", status: "live", progress: 85, url: "https://miosjarvis-afk.github.io/moltflip/" },
-        { name: "🦞 Moltbook Marketing", status: "active", progress: 30 },
-        { name: "🦾 Mission Control", status: "live", progress: 100, url: "https://miosjarvis-afk.github.io/mission-control/" },
-        { name: "📊 M&A Leads", status: "paused", progress: 10 }
-      ]
-    };
+    // === PROJECT DATA ===
+    const projects = [
+      {
+        id: "moltflip",
+        name: "🎰 MOLTFLIP",
+        desc: "Coinflip Casino für AI Agents",
+        status: "funding",
+        progress: 85,
+        link: "moltflip.html",
+        stats: { treasury: "0 SOL", posts: 2, comments: 15 }
+      },
+      {
+        id: "marketing",
+        name: "🦞 Moltbook Marketing",
+        desc: "Community Building & Hype",
+        status: "active",
+        progress: 30,
+        link: "moltflip.html",
+        stats: { upvotes: 2, karma: 2 }
+      },
+      {
+        id: "dashboard",
+        name: "🦾 Mission Control",
+        desc: "Projekt Dashboard",
+        status: "live",
+        progress: 100,
+        link: null,
+        stats: {}
+      },
+      {
+        id: "ma-leads",
+        name: "📊 M&A Leads",
+        desc: "928 Leads für M&A Consulting",
+        status: "paused",
+        progress: 10,
+        link: null,
+        stats: { analyzed: "80/928" }
+      }
+    ];
+
+    const quickLinks = [
+      { label: "🎰 MOLTFLIP Live", url: "https://miosjarvis-afk.github.io/moltflip/" },
+      { label: "🦞 Moltbook", url: "https://moltbook.com/u/moltflip" },
+      { label: "💻 GitHub", url: "https://github.com/miosjarvis-afk" },
+      { label: "💰 Treasury", url: "https://solscan.io/account/ChWbRpZfZy77rs5VNfXZ3hpCw5rkpyFcho34Pq7o6RBk?cluster=devnet" }
+    ];
 
     function render() {
       document.getElementById('app').innerHTML = `
         <div class="header">
           <h1>🦾 Mission Control</h1>
-          <div class="time">Updated: ${new Date(D.updated).toLocaleTimeString('de-DE', {hour:'2-digit',minute:'2-digit'})}</div>
+          <div class="sub">Projekt-Übersicht</div>
         </div>
         
-        <div class="treasury">
-          <div class="treasury-header">
-            <span class="treasury-label">💰 Treasury</span>
-            <span class="treasury-status status-${D.treasury.status}">${D.treasury.status === 'funding' ? '⏳ Funding' : '✅ Funded'}</span>
-          </div>
-          <div class="treasury-balance">${D.treasury.balance} SOL</div>
-          <div class="treasury-target">Ziel: ${D.treasury.target} SOL</div>
-          <div class="treasury-wallet">
-            <a href="https://solscan.io/account/${D.treasury.wallet}?cluster=devnet" target="_blank">${D.treasury.wallet}</a>
-          </div>
-        </div>
-        
-        <div class="stats-row">
-          <div class="stat-box">
-            <div class="stat-value blue">${D.moltbook.posts}</div>
-            <div class="stat-label">Posts</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-value blue">${D.moltbook.comments}</div>
-            <div class="stat-label">Comments</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-value green">${D.moltbook.upvotes}</div>
-            <div class="stat-label">Upvotes</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-value">${D.moltbook.karma}</div>
-            <div class="stat-label">Karma</div>
-          </div>
-        </div>
-        
-        <div class="section">
-          <div class="section-title">📡 Activity</div>
-          <div class="activity-list">
-            ${D.activity.map(a => `
-              <div class="activity-item">
-                <span class="activity-text">
-                  <span class="activity-badge badge-${a.type}">${a.type}</span>
-                  ${a.text}
-                </span>
-                <span class="activity-time">${a.time}</span>
+        <div class="projects">
+          ${projects.map(p => `
+            <${p.link ? `a href="${p.link}"` : 'div'} class="project-card status-${p.status}">
+              <div class="project-header">
+                <span class="project-name">${p.name}</span>
+                <span class="project-status status-${p.status}">${p.status}</span>
               </div>
-            `).join('')}
-          </div>
-        </div>
-        
-        <div class="section">
-          <div class="section-title">🚀 Projekte</div>
-          <div class="activity-list">
-            ${D.projects.map(p => `
-              <div class="project-item">
-                <span class="project-name">${p.url ? `<a href="${p.url}" target="_blank">${p.name}</a>` : p.name}</span>
-                <div class="project-meta">
-                  <div class="project-progress"><div class="project-progress-fill" style="width:${p.progress}%"></div></div>
-                  <span class="project-status status-${p.status}">${p.status}</span>
+              <div class="project-desc">${p.desc}</div>
+              <div class="project-progress">
+                <div class="progress-bar"><div class="progress-fill" style="width:${p.progress}%"></div></div>
+                <span class="progress-text">${p.progress}%</span>
+              </div>
+              ${Object.keys(p.stats).length ? `
+                <div class="project-stats">
+                  ${Object.entries(p.stats).map(([k,v]) => `<span class="stat-mini">${k}: <span>${v}</span></span>`).join('')}
                 </div>
-              </div>
-            `).join('')}
-          </div>
+              ` : ''}
+            </${p.link ? 'a' : 'div'}>
+          `).join('')}
         </div>
         
-        <div class="section">
-          <div class="section-title">🔗 Quick Links</div>
-          <div class="links">
-            ${D.links.map(l => `
-              <a href="${l.url}" target="_blank" class="link-btn">${l.icon} ${l.label}</a>
-            `).join('')}
-          </div>
+        <div class="links">
+          ${quickLinks.map(l => `<a href="${l.url}" target="_blank" class="link-btn">${l.label}</a>`).join('')}
         </div>
         
         <div class="footer">
-          <span class="refresh" onclick="location.reload()">↻ Refresh</span>
-          <span class="logout" onclick="logout()">Logout</span>
+          <span onclick="location.reload()">↻ Refresh</span>
+          <span onclick="logout()">Logout</span>
         </div>
       `;
     }
