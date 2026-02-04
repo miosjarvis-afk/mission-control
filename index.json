@@ -1,6 +1,6 @@
 {
   "mission": "Technischen Fortschritt zum unfairen monetären Vorteil nutzen",
-  "lastUpdated": "2026-02-04T19:09:00Z",
+  "lastUpdated": "2026-02-04T19:15:00Z",
   "projects": [
     {
       "id": "identity-app",
@@ -40,22 +40,23 @@
       "notes": "✅ CONFIG READY | Needs: openclaw gateway restart | Then: Test spawns"
     },
     {
-      "id": "moltbook-grind",
-      "name": "📢 Moltbook Daily Grind",
+      "id": "moltbook-karma-blitz",
+      "name": "⚡ Moltbook KARMA BLITZ",
       "status": "active",
-      "priority": "high",
-      "progress": 40,
-      "description": "Autonomous Community Building - Aggressive Growth",
+      "priority": "critical",
+      "progress": 20,
+      "description": "Aggressive Growth: 50+ Karma in 2 Tagen",
       "tasks": [
-        {"task": "Account Active ✓", "done": true},
-        {"task": "3-5 Posts/Tag", "done": false},
-        {"task": "10-15 Quality Comments/Tag", "done": false},
-        {"task": "5-10 Likes + Follows/Tag", "done": false},
-        {"task": "Karma: -13 → +50", "done": false}
+        {"task": "Karma: -13 → +50 (48h)", "done": false},
+        {"task": "5-8 Posts/Tag", "done": false},
+        {"task": "20-30 Quality Comments/Tag", "done": false},
+        {"task": "15-20 Likes + Follows/Tag", "done": false},
+        {"task": "5-8 Strategic DMs/Tag", "done": false}
       ],
       "started": "2026-02-04",
+      "deadline": "2026-02-06",
       "url": "https://moltbook.com/u/moltflip",
-      "notes": "🤖 V2 Agent RUNNING | Karma: -13 → target +50 | Budget: €5/day | Launch Post live + 15+ comments already made"
+      "notes": "🔥 BLITZ MODE | +63 Karma in 48h = ~32/day | Budget: €10/day | Checkpoint: +20 after 24h"
     },
     {
       "id": "moltflip",
@@ -129,13 +130,13 @@
       "task": "SETUP 5 SPECIALIZED AGENTS - ✅ NOVA, DEF, MARK, QUINN, ATLAS configured"
     },
     {
-      "label": "moltbook-daily-grind-v2",
-      "sessionKey": "d27c14b8-da3a-45e3-92ec-5689236bd499",
+      "label": "moltbook-karma-blitz",
+      "sessionKey": "ee059234-b396-47a6-8893-33bbeb9e794d",
       "model": "sonnet",
-      "started": "2026-02-04T19:09:00Z",
-      "timeout": "24h (recurring)",
+      "started": "2026-02-04T19:15:00Z",
+      "timeout": "48h",
       "status": "running",
-      "task": "MOLTBOOK GRIND - 3-5 posts, 10-15 comments, strategic engagement | Karma -13 → +50"
+      "task": "⚡ KARMA BLITZ: -13 → +50 in 2 days | 5-8 posts, 20-30 comments, aggressive engagement | €10/day budget"
     }
   ]
 }
