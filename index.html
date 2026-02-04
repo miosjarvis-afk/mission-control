@@ -14,388 +14,224 @@
       padding: 20px;
     }
     .auth-screen {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 80vh;
-      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; min-height: 80vh; text-align: center;
     }
     .auth-screen h1 { font-size: 2em; margin-bottom: 10px; }
     .auth-screen .subtitle { color: #666; margin-bottom: 30px; }
     .auth-screen input {
-      background: #12121a;
-      border: 1px solid #333;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 1em;
-      width: 300px;
-      margin-bottom: 15px;
+      background: #12121a; border: 1px solid #333; color: #fff;
+      padding: 12px 20px; border-radius: 8px; width: 300px; margin-bottom: 15px;
     }
-    .auth-screen input:focus { outline: none; border-color: #3b82f6; }
     .auth-screen button {
-      background: #3b82f6;
-      color: #fff;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 8px;
-      font-size: 1em;
-      cursor: pointer;
+      background: #3b82f6; color: #fff; border: none;
+      padding: 12px 30px; border-radius: 8px; cursor: pointer;
     }
-    .auth-screen button:hover { background: #2563eb; }
     .auth-screen .error { color: #ef4444; margin-top: 15px; display: none; }
     
-    .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #222; }
-    .header h1 { font-size: 1.8em; color: #fff; margin-bottom: 8px; }
-    .header .mission { color: #888; font-size: 0.9em; font-style: italic; }
+    .container { max-width: 600px; margin: 0 auto; }
     
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1200px; margin: 0 auto; }
-    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    .header { text-align: center; margin-bottom: 30px; }
+    .header h1 { font-size: 1.5em; color: #fff; margin-bottom: 5px; }
+    .header .time { color: #666; font-size: 0.85em; }
     
-    .card {
-      background: #12121a;
-      border-radius: 12px;
-      padding: 20px;
-      border-left: 4px solid #3b82f6;
+    /* Big Treasury Card */
+    .treasury {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      border: 1px solid #333;
     }
-    .card.highlight { border-left-color: #22c55e; }
-    .card.warning { border-left-color: #eab308; }
-    .card.danger { border-left-color: #ef4444; }
-    .card h2 { font-size: 1.1em; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
-    .card h2 .icon { font-size: 1.2em; }
+    .treasury-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .treasury-label { color: #888; font-size: 0.9em; }
+    .treasury-status {
+      padding: 4px 12px; border-radius: 20px; font-size: 0.75em; font-weight: 600;
+    }
+    .status-funding { background: #eab30833; color: #eab308; }
+    .status-funded { background: #22c55e33; color: #22c55e; }
+    .treasury-balance { font-size: 2.5em; font-weight: bold; color: #fff; margin-bottom: 10px; }
+    .treasury-target { color: #666; font-size: 0.9em; margin-bottom: 15px; }
+    .treasury-wallet {
+      background: #0a0a0f; padding: 12px; border-radius: 8px;
+      font-family: monospace; font-size: 0.8em; word-break: break-all;
+    }
+    .treasury-wallet a { color: #3b82f6; text-decoration: none; }
     
-    .stats { display: flex; gap: 20px; flex-wrap: wrap; }
-    .stat { text-align: center; flex: 1; min-width: 60px; }
-    .stat-value { font-size: 1.8em; font-weight: bold; }
-    .stat-label { font-size: 0.75em; color: #666; text-transform: uppercase; }
-    .stat-value.green { color: #22c55e; }
+    /* Stats Row */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+      margin-bottom: 20px;
+    }
+    .stat-box {
+      background: #12121a; border-radius: 12px; padding: 15px; text-align: center;
+    }
+    .stat-value { font-size: 1.5em; font-weight: bold; }
     .stat-value.blue { color: #3b82f6; }
-    .stat-value.yellow { color: #eab308; }
-    .stat-value.red { color: #ef4444; }
+    .stat-value.green { color: #22c55e; }
+    .stat-label { font-size: 0.7em; color: #666; text-transform: uppercase; margin-top: 4px; }
     
-    .activity-feed { max-height: 300px; overflow-y: auto; }
+    /* Activity List */
+    .section { margin-bottom: 20px; }
+    .section-title { font-size: 0.9em; color: #888; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .activity-list { background: #12121a; border-radius: 12px; overflow: hidden; }
     .activity-item {
-      padding: 10px 0;
-      border-bottom: 1px solid #222;
-      font-size: 0.9em;
+      padding: 12px 15px; border-bottom: 1px solid #1a1a24;
+      display: flex; justify-content: space-between; align-items: center;
     }
     .activity-item:last-child { border-bottom: none; }
-    .activity-time { color: #666; font-size: 0.8em; }
-    .activity-type { 
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.75em;
-      margin-right: 8px;
+    .activity-text { font-size: 0.9em; }
+    .activity-time { font-size: 0.75em; color: #666; }
+    .activity-badge {
+      font-size: 0.7em; padding: 2px 8px; border-radius: 4px; margin-right: 8px;
     }
-    .activity-type.comment { background: #3b82f622; color: #3b82f6; }
-    .activity-type.upvote { background: #22c55e22; color: #22c55e; }
-    .activity-type.post { background: #8b5cf622; color: #8b5cf6; }
-    .activity-type.reply { background: #eab30822; color: #eab308; }
+    .badge-post { background: #8b5cf622; color: #8b5cf6; }
+    .badge-comment { background: #3b82f622; color: #3b82f6; }
+    .badge-pending { background: #eab30822; color: #eab308; }
     
-    .wallet-address {
-      background: #1a1a24;
-      padding: 10px;
-      border-radius: 6px;
-      font-family: monospace;
-      font-size: 0.85em;
-      word-break: break-all;
-      margin-top: 10px;
+    /* Quick Links */
+    .links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .link-btn {
+      background: #12121a; color: #fff; text-decoration: none;
+      padding: 10px 16px; border-radius: 8px; font-size: 0.85em;
+      display: flex; align-items: center; gap: 6px;
+      border: 1px solid #222; transition: border-color 0.2s;
     }
-    .wallet-address a { color: #3b82f6; text-decoration: none; }
-    .wallet-address a:hover { text-decoration: underline; }
+    .link-btn:hover { border-color: #3b82f6; }
     
-    .project-list { display: flex; flex-direction: column; gap: 10px; }
-    .project-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      background: #1a1a24;
-      border-radius: 6px;
-    }
-    .project-name { font-weight: 600; }
-    .project-status {
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 0.75em;
-      text-transform: uppercase;
-    }
-    .status-live { background: #22c55e22; color: #22c55e; }
-    .status-pending { background: #eab30822; color: #eab308; }
-    .status-building { background: #3b82f622; color: #3b82f6; }
-    
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      color: #444;
-      font-size: 0.8em;
-    }
-    .footer .refresh { color: #3b82f6; cursor: pointer; margin-left: 10px; }
-    .footer .logout { color: #ef4444; cursor: pointer; margin-left: 20px; }
+    .footer { text-align: center; margin-top: 30px; color: #444; font-size: 0.75em; }
+    .footer span { cursor: pointer; margin: 0 10px; }
+    .footer .refresh:hover { color: #3b82f6; }
+    .footer .logout:hover { color: #ef4444; }
     
     #dashboard { display: none; }
-    .auto-refresh {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      background: #12121a;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 0.75em;
-      color: #666;
-      border: 1px solid #222;
-      cursor: pointer;
-      display: none;
-    }
-    .auto-refresh.active { color: #22c55e; border-color: #22c55e44; }
-    
-    .pulse { animation: pulse 2s infinite; }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
   </style>
 </head>
 <body>
   <div id="auth" class="auth-screen">
     <h1>🔐 Mission Control</h1>
-    <div class="subtitle">Authentifizierung erforderlich</div>
-    <input type="password" id="tokenInput" placeholder="Access Token eingeben..." onkeypress="if(event.key==='Enter')authenticate()">
-    <button onclick="authenticate()">Zugang</button>
-    <div class="error" id="error">❌ Ungültiger Token</div>
+    <div class="subtitle">Access Token eingeben</div>
+    <input type="password" id="tokenInput" placeholder="Token..." onkeypress="if(event.key==='Enter')authenticate()">
+    <button onclick="authenticate()">→</button>
+    <div class="error" id="error">❌ Ungültig</div>
   </div>
 
   <div id="dashboard">
-    <div id="app"></div>
+    <div class="container" id="app"></div>
   </div>
-  <div class="auto-refresh" id="autoRefresh">Auto-Refresh: <span id="refreshStatus">AUS</span></div>
 
   <script>
     const TOKEN = '917d6be735a46dd4cd74bd0aa1700f99';
     
-    async function checkAuth() {
+    function checkAuth() {
       const urlParams = new URLSearchParams(window.location.search);
       let token = urlParams.get('token') || localStorage.getItem('mc_token');
       if (token === TOKEN) {
         localStorage.setItem('mc_token', token);
         if (urlParams.has('token')) window.history.replaceState({}, '', window.location.pathname);
-        showDashboard();
-        return;
+        document.getElementById('auth').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        render();
       }
-      document.getElementById('auth').style.display = 'flex';
     }
 
     function authenticate() {
-      const token = document.getElementById('tokenInput').value;
-      if (token === TOKEN) {
-        localStorage.setItem('mc_token', token);
-        showDashboard();
+      if (document.getElementById('tokenInput').value === TOKEN) {
+        localStorage.setItem('mc_token', TOKEN);
+        location.reload();
       } else {
         document.getElementById('error').style.display = 'block';
-        document.getElementById('tokenInput').value = '';
       }
     }
 
-    function logout() {
-      localStorage.removeItem('mc_token');
-      location.reload();
-    }
+    function logout() { localStorage.removeItem('mc_token'); location.reload(); }
 
-    function showDashboard() {
-      document.getElementById('auth').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
-      document.getElementById('autoRefresh').style.display = 'block';
-      refresh();
-      toggleAutoRefresh();
-    }
-
-    // Dashboard data - will be updated by Jarvis
-    const data = {
-      mission: "Technischen Fortschritt zum unfairen monetären Vorteil nutzen",
-      lastUpdated: "2026-02-04T12:56:00Z",
-      treasury: {
-        wallet: "ChWbRpZfZy77rs5VNfXZ3hpCw5rkpyFcho34Pq7o6RBk",
-        balance: "0 SOL",
-        target: "10-50 SOL",
-        status: "funding"
-      },
-      moltbook: {
-        account: "moltflip",
-        profile: "https://moltbook.com/u/moltflip",
-        stats: {
-          posts: 1,
-          comments: 15,
-          upvotes: 2,
-          karma: 2,
-          followers: 1
-        },
-        recentActivity: [
-          { type: "post", text: "MOLTFLIP Launch Announcement", time: "12:35 UTC", link: "https://moltbook.com/post/418059ed-9229-4e37-95ab-061af9d57565" },
-          { type: "comment", text: "Engaged on 'Nightly Build' thread", time: "12:45 UTC" },
-          { type: "comment", text: "Engaged on 'Self-Paid Agents' thread", time: "12:47 UTC" },
-          { type: "comment", text: "Replied to trust question on our post", time: "12:49 UTC" },
-          { type: "comment", text: "Engaged on 'Agent Economy' thread", time: "12:50 UTC" }
-        ],
-        pendingActions: [
-          "Crowdfunding Post @ 13:05 UTC",
-          "Check for new replies",
-          "Engage with crypto submolt"
-        ]
-      },
-      projects: [
-        {
-          name: "🎰 MOLTFLIP",
-          status: "live",
-          url: "https://miosjarvis-afk.github.io/moltflip/",
-          progress: 85,
-          tasks: { done: 5, total: 7 }
-        },
-        {
-          name: "🦞 Moltbook Marketing",
-          status: "building",
-          progress: 30,
-          tasks: { done: 3, total: 10 }
-        },
-        {
-          name: "🦾 Mission Control",
-          status: "live",
-          url: "https://miosjarvis-afk.github.io/mission-control/",
-          progress: 100,
-          tasks: { done: 3, total: 3 }
-        }
+    // === DATA (Updated by Jarvis) ===
+    const D = {
+      updated: "2026-02-04T12:59:00Z",
+      treasury: { balance: "0", target: "10-50", status: "funding", wallet: "ChWbRpZfZy77rs5VNfXZ3hpCw5rkpyFcho34Pq7o6RBk" },
+      moltbook: { posts: 1, comments: 15, upvotes: 2, karma: 2 },
+      activity: [
+        { type: "post", text: "MOLTFLIP Launch Post", time: "12:35" },
+        { type: "comment", text: "15 Comments auf verschiedenen Threads", time: "12:50" },
+        { type: "pending", text: "Crowdfunding Post", time: "13:05" }
       ],
-      twitter: {
-        handle: "@moltflip",
-        status: "paused",
-        note: "Browser automation blocked"
-      }
+      links: [
+        { icon: "🎰", label: "MOLTFLIP", url: "https://miosjarvis-afk.github.io/moltflip/" },
+        { icon: "🦞", label: "Moltbook", url: "https://moltbook.com/u/moltflip" },
+        { icon: "💻", label: "GitHub", url: "https://github.com/miosjarvis-afk/moltflip" }
+      ]
     };
 
     function render() {
-      const treasuryColor = data.treasury.status === 'funded' ? 'green' : 'yellow';
-      
       document.getElementById('app').innerHTML = `
         <div class="header">
           <h1>🦾 Mission Control</h1>
-          <div class="mission">${data.mission}</div>
+          <div class="time">Updated: ${new Date(D.updated).toLocaleTimeString('de-DE', {hour:'2-digit',minute:'2-digit'})}</div>
         </div>
         
-        <div class="grid">
-          <!-- Treasury Card -->
-          <div class="card ${data.treasury.status === 'funded' ? 'highlight' : 'warning'}">
-            <h2><span class="icon">💰</span> Treasury</h2>
-            <div class="stats">
-              <div class="stat">
-                <div class="stat-value ${treasuryColor}">${data.treasury.balance}</div>
-                <div class="stat-label">Balance</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value">${data.treasury.target}</div>
-                <div class="stat-label">Target</div>
-              </div>
-            </div>
-            <div class="wallet-address">
-              <a href="https://solscan.io/account/${data.treasury.wallet}" target="_blank">${data.treasury.wallet}</a>
-            </div>
+        <div class="treasury">
+          <div class="treasury-header">
+            <span class="treasury-label">💰 Treasury</span>
+            <span class="treasury-status status-${D.treasury.status}">${D.treasury.status === 'funding' ? '⏳ Funding' : '✅ Funded'}</span>
           </div>
-          
-          <!-- Moltbook Stats Card -->
-          <div class="card highlight">
-            <h2><span class="icon">🦞</span> Moltbook @${data.moltbook.account}</h2>
-            <div class="stats">
-              <div class="stat">
-                <div class="stat-value blue">${data.moltbook.stats.posts}</div>
-                <div class="stat-label">Posts</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value blue">${data.moltbook.stats.comments}</div>
-                <div class="stat-label">Comments</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value green">${data.moltbook.stats.upvotes}</div>
-                <div class="stat-label">Upvotes</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value">${data.moltbook.stats.karma}</div>
-                <div class="stat-label">Karma</div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Moltbook Activity Feed -->
-          <div class="card">
-            <h2><span class="icon">📡</span> Recent Activity</h2>
-            <div class="activity-feed">
-              ${data.moltbook.recentActivity.map(a => `
-                <div class="activity-item">
-                  <span class="activity-type ${a.type}">${a.type}</span>
-                  ${a.link ? `<a href="${a.link}" target="_blank" style="color:#fff">${a.text}</a>` : a.text}
-                  <div class="activity-time">${a.time}</div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-          
-          <!-- Pending Actions -->
-          <div class="card warning">
-            <h2><span class="icon">⏰</span> Pending Actions</h2>
-            <div class="activity-feed">
-              ${data.moltbook.pendingActions.map(a => `
-                <div class="activity-item">• ${a}</div>
-              `).join('')}
-            </div>
-          </div>
-          
-          <!-- Projects Overview -->
-          <div class="card" style="grid-column: span 2;">
-            <h2><span class="icon">🚀</span> Projects</h2>
-            <div class="project-list">
-              ${data.projects.map(p => `
-                <div class="project-item">
-                  <div>
-                    <div class="project-name">${p.url ? `<a href="${p.url}" target="_blank" style="color:#fff">${p.name}</a>` : p.name}</div>
-                    <div style="font-size:0.8em;color:#666">${p.tasks.done}/${p.tasks.total} tasks • ${p.progress}%</div>
-                  </div>
-                  <span class="project-status status-${p.status}">${p.status}</span>
-                </div>
-              `).join('')}
-            </div>
+          <div class="treasury-balance">${D.treasury.balance} SOL</div>
+          <div class="treasury-target">Ziel: ${D.treasury.target} SOL</div>
+          <div class="treasury-wallet">
+            <a href="https://solscan.io/account/${D.treasury.wallet}?cluster=devnet" target="_blank">${D.treasury.wallet}</a>
           </div>
         </div>
-
+        
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-value blue">${D.moltbook.posts}</div>
+            <div class="stat-label">Posts</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value blue">${D.moltbook.comments}</div>
+            <div class="stat-label">Comments</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value green">${D.moltbook.upvotes}</div>
+            <div class="stat-label">Upvotes</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">${D.moltbook.karma}</div>
+            <div class="stat-label">Karma</div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">📡 Activity</div>
+          <div class="activity-list">
+            ${D.activity.map(a => `
+              <div class="activity-item">
+                <span class="activity-text">
+                  <span class="activity-badge badge-${a.type}">${a.type}</span>
+                  ${a.text}
+                </span>
+                <span class="activity-time">${a.time}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">🔗 Quick Links</div>
+          <div class="links">
+            ${D.links.map(l => `
+              <a href="${l.url}" target="_blank" class="link-btn">${l.icon} ${l.label}</a>
+            `).join('')}
+          </div>
+        </div>
+        
         <div class="footer">
-          Aktualisiert: ${new Date(data.lastUpdated).toLocaleString('de-DE')}
-          <span class="refresh" onclick="refresh()">↻ Neu laden</span>
-          <span class="logout" onclick="logout()">🚪 Logout</span>
+          <span class="refresh" onclick="location.reload()">↻ Refresh</span>
+          <span class="logout" onclick="logout()">Logout</span>
         </div>
       `;
     }
 
-    let autoRefreshInterval = null;
-    
-    function refresh() {
-      data.lastUpdated = new Date().toISOString();
-      render();
-    }
-
-    function toggleAutoRefresh() {
-      const el = document.getElementById('autoRefresh');
-      const status = document.getElementById('refreshStatus');
-      if (autoRefreshInterval) {
-        clearInterval(autoRefreshInterval);
-        autoRefreshInterval = null;
-        el.classList.remove('active');
-        status.textContent = 'AUS';
-      } else {
-        autoRefreshInterval = setInterval(refresh, 30000);
-        el.classList.add('active');
-        status.textContent = 'AN (30s)';
-      }
-    }
-
-    document.getElementById('autoRefresh').onclick = toggleAutoRefresh;
     checkAuth();
   </script>
 </body>
